@@ -1,5 +1,7 @@
 package com.smart.services;
 
+import java.util.Optional;
+
 import com.smart.entities.User;
 
 public interface UserService {
