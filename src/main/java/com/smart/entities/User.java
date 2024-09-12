@@ -26,7 +26,6 @@ public class User {
 	
 	private boolean enabled;
 	
-	@NotEmpty(message = "Set a password")
 	@Size(min = 8, message = "Password must be at least 8 characters long.")
     @Pattern(regexp = ".*[A-Z].*", message = "Password must contain at least one uppercase letter.")
     @Pattern(regexp = ".*[a-z].*", message = "Password must contain at least one lowercase letter.")

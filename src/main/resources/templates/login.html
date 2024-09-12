@@ -21,7 +21,8 @@
 		<h2>Login</h2>
 
 
-
+		<p th:if="${param.useriderror}" style="color: red;">User ID is incorrect.</p>
+		<p th:if="${param.passworderror}" style="color: red;">Password is incorrect.</p>
 		<!-- Display Error Message if login failed -->
 		<div th:if="${errorMessage}">
 			<div class="alert alert-danger" th:text="${errorMessage}"></div>
@@ -33,13 +34,22 @@
 		</div>
 
 		<!-- Login Form -->
-			<form action="#" th:action="@{/login}" method="post">
-		<input type="email" name="username" placeholder="Email"  /> <input
-			type="password" name="password" placeholder="Password" />
-		<button type="submit">Login</button>
-	</form>
+		<form action="#" th:action="@{/login}" method="post">
+			<input type="email" name="username" placeholder="Email" /> <input type="password" name="password"
+				placeholder="Password" />
+			<button type="submit">Login</button>
+		</form>
+
+
+		<div>
+			<p th:if="${param.error}" style="color: red;">Invalid user ID or password.</p>
+			<p th:if="${param.useriderror}" style="color: red;">User ID is incorrect.</p>
+			<p th:if="${param.passworderror}" style="color: red;">Password is incorrect.</p>
+		</div>
 
 	</div>
+
+
 
 	<!-- Bootstrap JS, Popper.js, and jQuery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -18,21 +18,18 @@ public class CustomAuthenticationFaliureHandler implements AuthenticationFailure
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		String errorMessage = "Invalid email or password.";
-		
-		if(exception.getMessage().equals("User is disabled")) {
-			errorMessage = "Your account has been disabled. Please contact support.";
-		}
-		else if (exception.getMessage().equalsIgnoreCase("User account has expired")) {
-			errorMessage = "Your account has expired. Please contact support.";
-		}
-		else if (exception instanceof UsernameNotFoundException) {
-			errorMessage = "No account found with the provided email.";
-		}
 		
 		
-		request.getSession().setAttribute("error", errorMessage);
-		response.sendRedirect("/login?error=true");
+		if (exception.getMessage().equals("User not found")) {
+            response.sendRedirect("/login?useriderror=true");
+        }
+		else if (exception.getMessage().equals("Bad credentials")) {
+            response.sendRedirect("/login?passworderror=true");
+        } else {
+            response.sendRedirect("/login?error=true");
+        }
+		
+		
 	}
 
 }

@@ -53,19 +53,20 @@ public class HomeController {
 	}
 	
 	@GetMapping("/login")
-	public String showLoginPage(@RequestParam(value = "error", required = false) String error,
-            @RequestParam(value = "logout", required = false) String logout,
-            HttpServletRequest request,
-            Model model) {
-		if(error != null) {
-			String errorMessage = (String) request.getSession().getAttribute("error");
-            model.addAttribute("errorMessage", errorMessage != null ? errorMessage : "Invalid email or password.");
-            request.getSession().removeAttribute("error");
-            
-		}
-		if (logout != null) {
-            model.addAttribute("logoutMessage", "You have been successfully logged out.");
-        }
+	public String showLoginPage() {
+//		@RequestParam(value = "error", required = false) String error,
+//        @RequestParam(value = "logout", required = false) String logout,
+//        HttpServletRequest request,
+//        Model model
+//		if(error != null) {
+//			String errorMessage = (String) request.getSession().getAttribute("error");
+//            model.addAttribute("errorMessage", errorMessage != null ? errorMessage : "Invalid email or password.");
+//            request.getSession().removeAttribute("error");
+//            
+//		}
+//		if (logout != null) {
+//            model.addAttribute("logoutMessage", "You have been successfully logged out.");
+//        }
 		
 		return "login";
 	}
