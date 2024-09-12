@@ -12,11 +12,11 @@
 	<nav th:replace ="~{base::basecontent}"></nav>
 	
 
-    <div class="container mt-5">
+    <div class="container mt-5" th:object="${user}">
         <h2>Welcome to the Home Page</h2>
 
         <!-- Display logged-in user's email -->
-        <p>Welcome, <span th:text="${username}">User</span>! You are now logged in.</p>
+        <p>Welcome, <span th:text="*{name}">User</span>! You are now logged in.</p>
 
         <!-- Add a Logout Button -->
         <form th:action="@{/logout}" method="post">

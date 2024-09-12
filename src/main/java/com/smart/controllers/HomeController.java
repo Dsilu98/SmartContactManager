@@ -1,6 +1,8 @@
 package com.smart.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -54,19 +56,7 @@ public class HomeController {
 	
 	@GetMapping("/login")
 	public String showLoginPage() {
-//		@RequestParam(value = "error", required = false) String error,
-//        @RequestParam(value = "logout", required = false) String logout,
-//        HttpServletRequest request,
-//        Model model
-//		if(error != null) {
-//			String errorMessage = (String) request.getSession().getAttribute("error");
-//            model.addAttribute("errorMessage", errorMessage != null ? errorMessage : "Invalid email or password.");
-//            request.getSession().removeAttribute("error");
-//            
-//		}
-//		if (logout != null) {
-//            model.addAttribute("logoutMessage", "You have been successfully logged out.");
-//        }
+
 		
 		return "login";
 	}
@@ -74,7 +64,12 @@ public class HomeController {
 	
 	
 	@GetMapping("/home")
-	public String showHome() {
+	public String showHome(Model  model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String userId = authentication.getName();
+		User user = userService.getUserByEmail(userId);
+		
+		model.addAttribute("user", user);
 		return "home";
 	}
 	

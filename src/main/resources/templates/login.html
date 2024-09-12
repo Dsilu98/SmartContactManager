@@ -20,21 +20,8 @@
 	<div class="container mt-5">
 		<h2>Login</h2>
 
-
-		<p th:if="${param.useriderror}" style="color: red;">User ID is incorrect.</p>
-		<p th:if="${param.passworderror}" style="color: red;">Password is incorrect.</p>
-		<!-- Display Error Message if login failed -->
-		<div th:if="${errorMessage}">
-			<div class="alert alert-danger" th:text="${errorMessage}"></div>
-		</div>
-
-		<!-- Display Logout Message if user successfully logged out -->
-		<div th:if="${logoutMessage}">
-			<div class="alert alert-success" th:text="${logoutMessage}"></div>
-		</div>
-
 		<!-- Login Form -->
-		<form action="#" th:action="@{/login}" method="post">
+		<form action="#" th:action="@{/login}" method="post" >
 			<input type="email" name="username" placeholder="Email" /> <input type="password" name="password"
 				placeholder="Password" />
 			<button type="submit">Login</button>

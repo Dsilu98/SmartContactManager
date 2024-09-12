@@ -17,19 +17,20 @@ import com.smart.services.UserService;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-	private final UserService service;
+	private  UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public CustomUserDetailsService(UserService service, PasswordEncoder passwordEncoder) {
+	public CustomUserDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
 		super();
-		this.service = service;
+		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		 User user = service.getUserByEmail(email);
+		 User user = userRepository.findByEmail(email).orElseThrow(()->new UsernameNotFoundException("User not found"));
+		 
 	        
 	        return new org.springframework.security.core.userdetails.User(user.getEmail(),
 	        		user.getPassword(),
