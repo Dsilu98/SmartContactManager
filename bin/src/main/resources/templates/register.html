@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Register</title>
+
+	<!-- Bootstrap CSS CDN -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Navbar from base.html -->
+	<nav th:replace="~{base::basecontent}"></nav>
+
+	<div class="container mt-5">
+		<h2>Register</h2>
+
+
+
+		<!-- Display Exception Message -->
+
+		<div th:if="${exceptionMessage}">
+			<div class="alert alert-danger" th:text="${exceptionMessage}"></div>
+		</div>
+
+		<!-- Display Registation success Message -->
+		<div th:if="${registarionSuccessMessage}">
+			<div class="alert alert-success" th:text="${registarionSuccessMessage}"></div>
+		</div>
+
+
+
+
+
+		<!-- Registration Form -->
+		<form th:action="@{/register}" th:object="${user}" method="post">
+
+			<!-- Display Validation Errors -->
+
+			<div th:if="${#fields.hasErrors()}">
+				<div class="alert alert-danger">
+					<p>There were errors in your form:</p>
+					<ul>
+						<li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Name Field -->
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Enter name">
+				<div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+			</div>
+
+			<!-- Email Field -->
+			<div class="form-group">
+				<label for="email">Email address</label>
+				<input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Enter email">
+				<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+			</div>
+
+			<!-- Password Field -->
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password">
+				<div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+			</div>
+
+			<!-- Submit and Reset Buttons -->
+			<button type="submit" class="btn btn-primary">Register</button>
+			<button type="reset" class="btn btn-secondary">Reset</button>
+		</form>
+
+	</div>
+
+	<!-- Bootstrap JS, Popper.js, and jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

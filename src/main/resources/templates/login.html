@@ -2,12 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
 
-	<!-- Bootstrap CSS CDN -->
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap CSS CDN -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	rel="stylesheet">
 </head>
 
 <body>
@@ -21,17 +23,26 @@
 		<h2>Login</h2>
 
 		<!-- Login Form -->
-		<form action="#" th:action="@{/login}" method="post" >
-			<input type="email" name="username" placeholder="Email" /> <input type="password" name="password"
-				placeholder="Password" />
-			<button type="submit">Login</button>
+		<form action="#" th:action="@{/login}" method="post">
+
+
+			<div class="form-group">
+				<input type="email" name="username" placeholder="Email" />
+			</div>
+			<div class="form-group">
+				<input type="password" name="password" placeholder="Password" />
+			</div>
+			<button type="submit" class="btn btn-primary btn-block">Login</button>
 		</form>
 
 
 		<div>
-			<p th:if="${param.error}" style="color: red;">Invalid user ID or password.</p>
-			<p th:if="${param.useriderror}" style="color: red;">User ID is incorrect.</p>
-			<p th:if="${param.passworderror}" style="color: red;">Password is incorrect.</p>
+			<p th:if="${param.error}" style="color: red;">Invalid user ID or
+				password.</p>
+			<p th:if="${param.useriderror}" style="color: red;">User ID is
+				incorrect.</p>
+			<p th:if="${param.passworderror}" style="color: red;">Password is
+				incorrect.</p>
 		</div>
 
 	</div>
@@ -40,8 +51,10 @@
 
 	<!-- Bootstrap JS, Popper.js, and jQuery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 

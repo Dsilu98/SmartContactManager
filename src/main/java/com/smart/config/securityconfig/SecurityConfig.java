@@ -20,7 +20,7 @@ public class SecurityConfig {
     private CustomAuthenticationFaliureHandler authenticationFaliureHandler;
     
     @Autowired
-    public SecurityConfig(@Lazy CustomUserDetailsService customUserDetailsService) {
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
 		super();
 		this.customUserDetailsService = customUserDetailsService;
 	}
@@ -30,13 +30,14 @@ public class SecurityConfig {
         http
             .csrf().disable()
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/register", "/h2-console/**","/css/**").permitAll()
-                .requestMatchers("/home").hasRole("USER")
+                .requestMatchers("/login", "/register", "/h2-console/**","/static/css/**","/css/**","/static/jsp/**","/home").permitAll()
+                .requestMatchers("/user/**").hasRole("USER")
                 .anyRequest().authenticated()
+                
             )
             .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/home", true)
+                .defaultSuccessUrl("/user/index", true)
                 .failureHandler(authenticationFaliureHandler)
                 .permitAll()
             )
