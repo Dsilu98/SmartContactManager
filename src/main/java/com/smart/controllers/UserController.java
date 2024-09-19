@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.smart.entities.Contact;
 import com.smart.entities.User;
+import com.smart.repositories.ContactRepository;
 import com.smart.services.ContactService;
 import com.smart.services.UserService;
 import com.smart.util.FileUploadUtil;
@@ -31,6 +32,9 @@ import com.smart.util.FileUploadUtil;
 public class UserController {
 	private UserService userService;
 	private ContactService contactService;
+	
+	@Autowired
+	private ContactRepository contactRepository;
 	
 	@Autowired
 	public UserController(UserService userService, ContactService contactService) {
@@ -89,6 +93,8 @@ public class UserController {
 			contact.setUser(user);
 			contactService.saveContact(contact);
 			
+			
+			
 			model.addAttribute("contact", contact);
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", e.getMessage());
@@ -97,4 +103,18 @@ public class UserController {
 		
 		return "redirect:/user/addContact";
 	}
+	
+	//geting all contacts by user
+	@GetMapping("/show-contacts")
+	public String showContacts(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String userId = authentication.getName();
+		User user = userService.getUserByEmail(userId);
+		
+		model.addAttribute("contact", contactRepository.findAll());
+		System.out.println(contactRepository.findAll());
+		
+		return "user/view_contact";
+	}
+	
 }

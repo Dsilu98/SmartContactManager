@@ -2,8 +2,10 @@ package com.smart.entities;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -30,7 +32,7 @@ public class Contact {
 	@Column(length = 500)
 	private String about;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
 
 	public Contact() {
@@ -121,6 +123,12 @@ public class Contact {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "Contact [id=" + id + ", name=" + name + ", secondName=" + secondName + ", work=" + work + ", email="
+				+ email + ", phone=" + phone + ", image=" + image + ", about=" + about + ", user=" + user + "]";
 	}
 
 	
