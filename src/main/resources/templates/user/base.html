@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="basecontent">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="parent(content)">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base Page</title>
+    <title th:text="${title}">Base Page</title>
     <!-- Bootstrap CSS CDN -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -32,7 +32,7 @@
         </div>
     </nav>
 
-	<div class="sidebar mt-5">
+	<div class="sidebar mt-2">
 		
 		<span onclick="toggleSidebar()" class="cross-Btn">&times;</span>
 	
@@ -45,9 +45,9 @@
 		<div class="divider"></div>
 	</div>
 	
-	<div class="content mt-5" >
+	<div class="content mt-5"  >
 		<i onclick="toggleSidebar()" class="fas fa-bars m-3"></i>
-		<div ></div>
+		<div th:replace="${content}"></div>
 	</div>
 
     <!-- Bootstrap JS, Popper.js, and jQuery -->

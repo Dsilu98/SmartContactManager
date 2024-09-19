@@ -30,7 +30,7 @@ public class SecurityConfig {
         http
             .csrf().disable()
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/register", "/h2-console/**","/static/css/**","/css/**","/static/jsp/**","/home").permitAll()
+                .requestMatchers("/login", "/register", "/h2-console/**","/resources/**","/static/css/**","/css/**","/static/jsp/**","/home").permitAll()
                 .requestMatchers("/user/**").hasRole("USER")
                 .anyRequest().authenticated()
                 
